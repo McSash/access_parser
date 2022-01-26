@@ -6,7 +6,7 @@ Use pip: `pip install access-parser`
 
 Or install manually:
 ```bash
-git clone https://github.com/ClarotyICS/access_parser.git
+git clone https://github.com/McSash/access_parser.git
 cd access_parser
 python3 setup.py install
 ```
@@ -18,7 +18,7 @@ python3 setup.py install
 ```python
 from access_parser import AccessParser
 
-# .mdb or .accdb file
+# .mdb or .accdb file, alternatively pass bytes object
 db = AccessParser("/path/to/mdb/file.mdb")
 
 # Print DB tables
