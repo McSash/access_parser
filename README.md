@@ -2,12 +2,12 @@
 Microsoft Access (.mdb / .accdb) database files parser. The parsing logic is fully written in python and works without any external binary dependencies.
 
 # Installing
-Use pip: `pip install git+https://github.com/McSash/access_parser`
+Use pip: `pip install git+https://github.com/McSash/access_parser_c`
 
 Or install manually:
 ```bash
-git clone https://github.com/McSash/access_parser.git
-cd access_parser
+git clone https://github.com/McSash/access_parser_c.git
+cd access_parser_c
 python3 setup.py install
 ```
 
@@ -16,10 +16,34 @@ python3 setup.py install
 
 # Usage Example
 ```python
-from access_parser import AccessParser
+from access_parser_c import AccessParser
 
-# .mdb or .accdb file, alternatively pass bytes object
+# .mdb or .accdb file
 db = AccessParser("/path/to/mdb/file.mdb")
+
+# Print DB tables
+print(db.catalog)
+
+# Tables are stored as defaultdict(list) -- table[column][row_index]
+table = db.parse_table("table_name")
+
+# Pretty print all tables
+db.print_database()
+
+```
+
+# Another Usage Example
+
+```python
+from access_parser import AccessParser
+from azure.storage.blob import ContainerClient
+
+# Download access file from azure blob storage
+BlobContainerClient = ContainerClient.from_connection_string("<StorageConnectionString>", container_name="<ContainerName>")
+access_object = BlobContainerClient.download_blob("<PathToFile>").readall()
+
+# Bytes object of .mdb or .accdb file
+db = AccessParser(access_object)
 
 # Print DB tables
 print(db.catalog)
@@ -42,4 +66,4 @@ To help us resolve issues faster please provide as much data as you can when ope
  
  
 ### Thanks
-* This library was made possible by the great work by claroty: https://github.com/claroty/access_parser
+* This fork was made possible by the great work by claroty: https://github.com/claroty/access_parser
