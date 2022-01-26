@@ -42,5 +42,4 @@ To help us resolve issues faster please provide as much data as you can when ope
  
  
 ### Thanks
-* This library was made possible by the great work by mdb-tools. The logic in this library heavily relies on the excellent documentation they have https://github.com/brianb/mdbtools
-* Huge thanks to Mashav Sapir for the help debugging, CRing and contributing to this project https://github.com/mashavs
+* This library was made possible by the great work by claroty: https://github.com/claroty/access_parser
