@@ -4,14 +4,14 @@ with open("README.md", "r") as f:
     long_description = f.read()
 
 setuptools.setup(
-    name="access_parser",
+    name="access_parser_c",
     version="0.0.4",
-    author="Uri Katz",
-    author_email="uri.k@claroty.com",
+    author="Sascha Saumer",
+    author_email="s.saumer@hotmail.de",
     description="Access database (*.mdb, *.accdb) parser",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ClarotyICS/access_parser",
+    url="https://github.com/McSash/access_parser_c",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
