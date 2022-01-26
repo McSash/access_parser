@@ -5,9 +5,9 @@ from collections import defaultdict
 from construct import ConstructError
 from tabulate import tabulate
 
-from .parsing_primitives import parse_relative_object_metadata_struct, parse_table_head, parse_data_page_header, \
+from parsing_primitives import parse_relative_object_metadata_struct, parse_table_head, parse_data_page_header, \
     ACCESSHEADER, MEMO, parse_table_data, TDEF_HEADER
-from .utils import categorize_pages, parse_type, TYPE_MEMO, TYPE_TEXT, TYPE_BOOLEAN, read_db_file, numeric_to_string, \
+from utils import categorize_pages, parse_type, TYPE_MEMO, TYPE_TEXT, TYPE_BOOLEAN, read_db_file, numeric_to_string, \
     TYPE_96_bit_17_BYTES
 
 # Page sizes
@@ -38,7 +38,10 @@ class TableObj(object):
 
 class AccessParser(object):
     def __init__(self, db_path):
-        self.db_data = read_db_file(db_path)
+        if isinstance(db_path, bytes):                  # allow to pass bytes object e.g. downloaded from cloud storage
+            self.db_data = db_path
+        else:
+            self.db_data = read_db_file(db_path)
         self._parse_file_header(self.db_data)
         self._table_defs, self._data_pages, self._all_pages = categorize_pages(self.db_data, self.page_size)
         self._tables_with_data = self._link_tables_to_data()
