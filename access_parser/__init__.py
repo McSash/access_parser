@@ -1,1 +1,1 @@
-from access_parser.access_parser import AccessParser
+from access_parser_c.access_parser import AccessParser
