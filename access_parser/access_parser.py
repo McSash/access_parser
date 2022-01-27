@@ -5,9 +5,9 @@ from collections import defaultdict
 from construct import ConstructError
 from tabulate import tabulate
 
-from parsing_primitives import parse_relative_object_metadata_struct, parse_table_head, parse_data_page_header, \
+from .parsing_primitives import parse_relative_object_metadata_struct, parse_table_head, parse_data_page_header, \
     ACCESSHEADER, MEMO, parse_table_data, TDEF_HEADER
-from utils import categorize_pages, parse_type, TYPE_MEMO, TYPE_TEXT, TYPE_BOOLEAN, read_db_file, numeric_to_string, \
+from .utils import categorize_pages, parse_type, TYPE_MEMO, TYPE_TEXT, TYPE_BOOLEAN, read_db_file, numeric_to_string, \
     TYPE_96_bit_17_BYTES
 
 # Page sizes
